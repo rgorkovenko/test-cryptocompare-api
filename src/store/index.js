@@ -53,10 +53,10 @@ export default new Vuex.Store({
   },
   actions: {
     async loadData({ state, commit }) {
-      const  { url } = config.cryptocompare;
+      const  { api_key, url } = config.cryptocompare;
 
       const filter = state.coinFilter.join(',') || state.coinTypes.join(',');
-      const response = await axios.get(`${url}pricemulti?&fsyms=${filter}&tsyms=${state.currencyTypes.join(',')}`);
+      const response = await axios.get(`${url}pricemulti?api_key=${api_key}&fsyms=${filter}&tsyms=${state.currencyTypes.join(',')}`);
       if (response.status === 200) {
         commit("setData", response.data);
       }
